@@ -1,9 +1,9 @@
 <?php
-    $con = mysqli_connect("localhost", "root", "", "carx");
+    $con = mysqli_connect("localhost", "root", "", "house");
     if(isset($_GET['deleteid'])) {
         $user_id = $_GET['deleteid'];
 
-        $delete = "DELETE FROM `bookedcar` where user_id=$user_id ";
+        $delete = "DELETE FROM `booked` where SLNO=$user_id ";
         $result = mysqli_query($con, $delete);
         if($result) {
             echo '<script> alert("Delete Successful") </script>';

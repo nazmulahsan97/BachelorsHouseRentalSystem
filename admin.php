@@ -96,8 +96,8 @@
     <footer>
       <div class="footer-container">
         <div>
-          <h2>Influencer products</h2>
-          <p>Copyright © 2020 influencer products All rights reserved</p>
+          <h2>Bachelor Home</h2>
+          <p>Copyright © Team Outliers All rights reserved</p>
           <div class="footer-icons">
             <a href="https://github.com/shifat-bin-reza" target="_blank"><i class="fa-brands fa-github"></i></a>
             <a href="https://www.linkedin.com/in/md-shifat-bin-reza/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>

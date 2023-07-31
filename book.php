@@ -1,29 +1,31 @@
-<?php 
-  if(isset($_POST['submit'])) {
-      $fname = $_POST["fname"];
-      $lname = $_POST["lname"];
-      $email = $_POST["email"];
-      $phone = $_POST["phone"];
-      $dob = $_POST["dob"];
-      $address = $_POST["address"];
-    
-      $host = "localhost";
-      $user = "root";
-      $pass = "";
-      $dbname = 'house';
-    
-      $connect = mysqli_connect($host, $user, $pass, $dbname);
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $jsonData = file_get_contents("php://input");
 
-      $insert = "INSERT INTO booked (fname, lname, email, phone, dob, address) values
+    $data = json_decode($jsonData, true);
+
+    // Access the form data
+    $fname = $data["fname"];
+    $lname = $data["lname"];
+    $email = $data["email"];
+    $phone = $data["phone"];
+    $dob = $data["dob"];
+    $address = $data["address"];
+
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = 'house';
+
+    $connect = mysqli_connect($host, $user, $pass, $dbname);
+
+    $insert = "INSERT INTO booked (fname, lname, email, phone, dob, address) values
       ('$fname', '$lname', '$email', '$phone', '$dob', '$address')";
-      mysqli_query($connect, $insert);
-      echo "
-        <script>
-          alert('Booked Successful')
-        </script>
-      ";      
-  }
+    mysqli_query($connect, $insert);
+    exit; 
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,32 +62,32 @@
         </nav>
 
         <main id='form-container'>
-            <form action="#" method='POST' id="register">
+            <form action="#" method='POST' id="myForm">
                 <div class='fname'>
                     <label for="fname">First Name:</label>
-                    <input type="text" name="fname">
+                    <input id="fname" type="text" name="fname" required>
                 </div>
                 <div class='lname'>
                     <label for="lname">Last Name:</label>
-                    <input type="text" name="lname">
+                    <input id="lname" type="text" name="lname" required>
                 </div>
                 <div class='email'>
                     <label for="email">Email:</label>
-                    <input type="email" name="email">
+                    <input id="email" type="email" name="email" required>
                 </div>
                 <div class='number'>
                     <label for="number">Phone:</label>
-                    <input type="number" name="phone">
+                    <input id="phone" type="number" name="phone" required>
                 </div>
                 <div class='dateofbirth'>
                     <label for="dateofbirth">Date of Birth:</label>
-                    <input type="date" name="dob">
+                    <input id="dob" type="date" name="dob" id="dob" required>
                 </div>
                 <div class='address'>
                     <label for="address">Address:</label>
-                    <input type="text" name="address">
+                    <input id="address" type="text" name="address" required>
                 </div>
-                <input class="button-submit" type="submit" name="submit" value="Submit">
+                <input class="button-submit" id="submit" type="submit" name="submit" value="Submit">
             </form>
         </main>
       </div>
@@ -94,8 +96,8 @@
     <footer>
       <div class="footer-container">
         <div>
-          <h2>Influencer products</h2>
-          <p>Copyright © 2020 influencer products All rights reserved</p>
+            <h2>Bachelor Home</h2>
+            <p>Copyright © Team Outliers All rights reserved</p>
           <div class="footer-icons">
             <a href="https://github.com/shifat-bin-reza" target="_blank"><i class="fa-brands fa-github"></i></a>
             <a href="https://www.linkedin.com/in/md-shifat-bin-reza/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
